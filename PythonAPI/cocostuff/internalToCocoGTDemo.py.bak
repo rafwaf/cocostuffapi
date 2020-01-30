@@ -222,17 +222,17 @@ def internalToCocoGTDemo(dataType='train2017', dataDir='../..',
         catStr = catStr[1:-1]  # Remove brackets
 
         # Write opening braces, headers and annotation start to disk
-        output.write(str('{\n' + infoStr + imStr + licStr + catStr))
+        output.write(unicode('{\n' + infoStr + imStr + licStr + catStr))
 
         # Start annots
         if outputAnnots:
-            output.write(str(',\n"annotations": \n[\n'))
+            output.write(unicode(',\n"annotations": \n[\n'))
             for i, imgName in enumerate(imgNames):
 
                 # Write annotations
                 imgId = imgIds[i]
                 diffTime = time.clock() - startTime
-                print("Writing JSON annotation %d of %d (%.1fs): %s..." % (i+1, imgCount, diffTime, imgName))
+                print "Writing JSON annotation %d of %d (%.1fs): %s..." % (i+1, imgCount, diffTime, imgName)
 
                 # Read annotation file
                 annotPath = os.path.join(annotFolder, imgName)
@@ -278,16 +278,16 @@ def internalToCocoGTDemo(dataType='train2017', dataDir='../..',
 
                     # Write JSON
                     annotStr = annotStr + json.dumps(anndata, indent=indent)
-                    output.write(str(annotStr))
+                    output.write(unicode(annotStr))
 
                     # Increment annId
                     annId = annId + 1
 
             # End annots
-            output.write(str('\n]'))
+            output.write(unicode('\n]'))
 
         # Global end
-        output.write(str('\n}'))
+        output.write(unicode('\n}'))
 
 if __name__ == "__main__":
     internalToCocoGTDemo()
